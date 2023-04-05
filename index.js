@@ -1,8 +1,8 @@
 const fs = require("fs");
-const inquirer = require("inquirer");
 const generateLogo = require("./lib/generateLogo");
+const inquirer = require("inquirer");
 
-const questions = [
+const question = [
     {
         type: "input",
         name: "characters",
@@ -32,13 +32,13 @@ function writeFile(data) {
         if (err) {
             return console.log(err);
         }
-        console.log("Generated gnerateLogo.svg!");
+        console.log("Generated Logo.svg!");
     });
 }
 
 function init() {
     inquirer
-    .createPromptModule(questions)
+    .prompt(question)
     .then((answers) => writeFile(generateLogo(answers)))
     .catch((err) => console.log(err));
 }
